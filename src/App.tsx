@@ -39,15 +39,6 @@ export default function App() {
 					</h1>
 				</Header>
 
-				{/* <div className='mt-8'>
-					<button
-						onClick={handleAddGoals}
-						className='bg-cyan-500 px-4 py-1 font-semibold text-slate-950 transition hover:bg-cyan-400'
-					>
-						Add Goal
-					</button>
-
-				</div> */}
 				<NewGoal onAddGoal={handleAddGoals} />
 				<CourseGoalList goals={goals} onDeleteGoal={handleDeleteGoal} />
 			</div>
