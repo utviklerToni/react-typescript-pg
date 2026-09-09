@@ -1,75 +1,145 @@
-# React + TypeScript + Vite
+# React + TypeScript — Frontend Practice Playground
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal playground for practicing **React, TypeScript, and modern frontend development**.
 
-Currently, two official plugins are available:
+This repository follows along with Maximilian Schwarzmüller's React + TypeScript course/tutorial. It is primarily a learning and experimentation space rather than a production application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🎯 Goals
 
-## React Compiler
+The purpose of this repository is to:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Practice React fundamentals and patterns
+- Learn and apply TypeScript with React
+- Experiment with components, props, state, events, forms, and hooks
+- Practice managing and structuring frontend applications
+- Build small features and exercises while learning
+- Experiment with different approaches and refactor as I learn
+- Keep a history of my progress and experiments
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React**
+- **TypeScript**
+- **Vite**
+- **ESLint**
+- **CSS**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📚 What I'm Practicing
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+This repository will evolve as I work through the course. Topics may include:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React components
+- JSX / TSX
+- Props
+- State
+- Event handling
+- Forms and user input
+- TypeScript types and interfaces
+- Generic types
+- React Hooks
+- `useState`
+- `useEffect`
+- Custom Hooks
+- Context API
+- Refs
+- Component composition
+- Conditional rendering
+- Lists and keys
+- API requests
+- Error handling
+- Forms and validation
+- Advanced TypeScript patterns
+- React performance
+- Project structure and best practices
+
+## 🚀 Getting Started
+
+Clone the repository:
 
 ```
+git clone <your-repository-url>
+cd <your-repository-name>
+```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```
+npm install
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Start the development server:
 
+```
+npm run dev
+```
+
+Then open the local URL shown by Vite in your browser.
+
+## 🌱 Branching & Practice Workflow
+
+The `master` branch contains the main learning progress.
+
+For individual exercises or experiments, I use separate branches:
+
+```
+master
+  │
+  ├── feature/form-add-delete
+  ├── feature/react-hooks
+  ├── feature/forms
+  └── feature/other-experiment
+```
+
+Changes are merged into `master` through Pull Requests so I can practice a proper Git/GitHub workflow alongside frontend development.
+
+## 🧪 This Is a Playground
+
+Not everything in this repository is intended to be production-ready.
+
+Some code may be:
+
+- Experimental
+- Refactored multiple times
+- Intentionally simple for learning purposes
+- Based on course exercises
+- Used to test an idea or React/TypeScript feature
+
+The goal is **learning and experimentation**, not perfection.
+
+## 📈 Progress
+
+I'll continue adding exercises, experiments, and projects as I progress through the course.
+
+> Learn → Build → Break → Debug → Refactor → Repeat.
+
+---
+
+**React + TypeScript + Vite**
+
+Built as a personal frontend learning playground.
+
+I particularly like the **"This Is a Playground"** section for your use case. It gives you permission to have ugly/experimental code without making the repo look abandoned or poorly maintained.
+
+One small Git recommendation too: since you're using `master` as your protected default branch, I'd keep your feature branches named consistently:
+
+```
+git switch -c feature/form-add-delete
+```
+
+rather than just:
+
+```
+git switch -c form-add-delete
+```
+
+Then your GitHub history starts looking really clean:
+
+```
+master
+│
+├── feature/forms
+├── feature/react-hooks
+├── feature/typescript-generics
+├── feature/context
+└── feature/api-practice
 ```
