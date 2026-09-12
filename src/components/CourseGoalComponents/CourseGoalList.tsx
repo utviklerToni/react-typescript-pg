@@ -1,6 +1,6 @@
 import CourseGoal from './CourseGoal';
-import { type CourseGoal as CourseGoalProps } from '../App.tsx';
-import InfoBox from './InfoBox.tsx';
+import { type CourseGoal as CourseGoalProps } from '../../app/GoalApp.tsx';
+import InfoBox from '../InfoBox.tsx';
 import type { ReactNode } from 'react';
 
 type CourseGoalListProps = {
