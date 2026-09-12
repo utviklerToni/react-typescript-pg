@@ -1,7 +1,6 @@
 import CourseGoalList from '../components/CourseGoalComponents/CourseGoalList';
 import Header from '../components/CourseGoalComponents/Header';
 import NewGoal from '../components/CourseGoalComponents/NewGoal';
-import goalImg from '../assets/hero.png';
 import { useState } from 'react';
 
 export type CourseGoal = {
@@ -31,11 +30,7 @@ export default function GoalApp() {
 
 	return (
 		<div className='mx-auto max-w-2xl'>
-			<Header image={{ src: goalImg, alt: 'Course goals' }}>
-				<h1 className='text-3xl font-bold tracking-tight'>
-					Your Course Goals
-				</h1>
-			</Header>
+			<Header>Your Course Goals</Header>
 
 			<NewGoal onAddGoal={handleAddGoals} />
 			<CourseGoalList goals={goals} onDeleteGoal={handleDeleteGoal} />

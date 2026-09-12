@@ -1,12 +1,7 @@
-// import GoalApp from './app/GoalApp';
+import WastelandDeck from './playground/WastelandDeck';
 
 function App() {
-	return (
-		<main className='min-h-screen bg-slate-950 px-6 py-12 text-white'>
-			new app
-			{/* <GoalApp /> */}
-		</main>
-	);
+	return <WastelandDeck />;
 }
 
 export default App;

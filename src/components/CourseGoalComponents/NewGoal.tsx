@@ -20,32 +20,66 @@ export default function NewGoal({ onAddGoal }: NewGoalProps) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<div className='flex flex-col items-baseline justify-between border border-slate-800 bg-slate-900 p-5 shadow-lg my-3'>
-				<p className='flex flex-col'>
-					<label htmlFor='goal'>Your goal</label>
-					<input
-						id='goal'
-						type='text'
-						className='border-fuchsia-500 border-2'
-						ref={goal}
-					/>
-				</p>
-				<p className='flex flex-col'>
-					<label htmlFor='summary'>Short summary</label>
-					<input
-						id='summary'
-						type='text'
-						className='border-fuchsia-500 border-2'
-						ref={summary}
-					/>
-				</p>
-			</div>
+			<div className='border border-stone-800 bg-stone-950 p-5 shadow-[0_8px_30px_rgba(0,0,0,0.25)]'>
+				<div className='mb-5 flex items-center justify-between border-b border-stone-900 pb-3'>
+					<div className='font-mono text-[9px] uppercase tracking-[0.3em] text-orange-700'>
+						NEW OBJECTIVE
+					</div>
 
-			<p>
-				<button className='bg-green-500/10 px-3 py-1.5 text-sm font-medium text-green-400 transition hover:bg-green-500/20 my-3'>
-					Add Goal
-				</button>
-			</p>
+					<div className='font-mono text-[8px] tracking-[0.2em] text-stone-700'>
+						INPUT // READY
+					</div>
+				</div>
+
+				<div className='grid gap-5 sm:grid-cols-2'>
+					<p className='flex flex-col gap-2'>
+						<label
+							htmlFor='goal'
+							className='font-mono text-[9px] uppercase tracking-[0.2em] text-stone-500'
+						>
+							Objective
+						</label>
+
+						<input
+							id='goal'
+							type='text'
+							placeholder='Enter objective...'
+							className='border border-stone-800 bg-stone-900 px-3 py-3 font-mono text-sm text-stone-200 outline-none transition placeholder:text-stone-700 focus:border-orange-700 focus:bg-stone-900'
+							ref={goal}
+						/>
+					</p>
+
+					<p className='flex flex-col gap-2'>
+						<label
+							htmlFor='summary'
+							className='font-mono text-[9px] uppercase tracking-[0.2em] text-stone-500'
+						>
+							Briefing
+						</label>
+
+						<input
+							id='summary'
+							type='text'
+							placeholder='Enter briefing...'
+							className='border border-stone-800 bg-stone-900 px-3 py-3 font-mono text-sm text-stone-200 outline-none transition placeholder:text-stone-700 focus:border-orange-700 focus:bg-stone-900'
+							ref={summary}
+						/>
+					</p>
+				</div>
+
+				<div className='mt-5 flex items-center justify-between border-t border-stone-900 pt-4'>
+					<span className='font-mono text-[8px] uppercase tracking-[0.2em] text-stone-700'>
+						// ALL FIELDS REQUIRED
+					</span>
+
+					<button
+						type='submit'
+						className='border border-orange-800 bg-orange-950/30 px-5 py-2.5 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-orange-500 transition hover:border-orange-600 hover:bg-orange-900/30 hover:text-orange-400'
+					>
+						Deploy Objective
+					</button>
+				</div>
+			</div>
 		</form>
 	);
 }
