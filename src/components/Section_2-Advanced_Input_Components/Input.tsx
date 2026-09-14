@@ -1,9 +1,11 @@
+import { type ComponentPropsWithoutRef } from 'react';
+
 type InputProps = {
 	label: string;
 	id: string;
-};
+} & ComponentPropsWithoutRef<'input'>;
 
-export default function Input({ label, id }: InputProps) {
+export default function Input({ label, id, ...props }: InputProps) {
 	return (
 		<div className='group space-y-2'>
 			<label
@@ -15,7 +17,7 @@ export default function Input({ label, id }: InputProps) {
 
 			<input
 				id={id}
-				type='text'
+				{...props}
 				className='
 					w-full
 					border border-[#70552C]

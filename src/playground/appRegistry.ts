@@ -11,14 +11,14 @@ export type AppModule = {
 
 export const appModules: AppModule[] = [
 	{
-		id: 'input',
-		label: 'INPUT',
-		component: InputApp,
-	},
-
-	{
 		id: 'goals',
 		label: 'GOALS',
 		component: GoalApp,
+	},
+
+	{
+		id: 'input',
+		label: 'INPUT',
+		component: InputApp,
 	},
 ];
