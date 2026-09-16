@@ -43,14 +43,12 @@ export default function InputApp() {
 				</div>
 				<div>
 					<p>
-						<Button el='button'>A Button</Button>
+						<Button>A Button</Button>
 					</p>
 				</div>
 				<div>
 					<p>
-						<Button el='anchor' href='https://google.com'>
-							A link
-						</Button>
+						<Button href='https://google.com'>A link</Button>
 					</p>
 				</div>
 			</div>
