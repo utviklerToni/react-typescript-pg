@@ -1,7 +1,14 @@
-import Button from '../components/Section_2-Advanced_Input_Components/Button';
+import { useRef } from 'react';
+import Container from '../components/Section_2-Advanced_Input_Components/Container';
 import Input from '../components/Section_2-Advanced_Input_Components/Input';
+import Form from '../components/Section_2-Advanced_Input_Components/Form';
+import Button from '../components/Section_2-Advanced_Input_Components/Button';
 
 export default function InputApp() {
+	function handleSave(data: unknown) {
+		const extractedData = data as { name: string; age: string };
+		console.log(extractedData);
+	}
 	return (
 		<div className='flex items-center justify-center p-6'>
 			<div
@@ -30,10 +37,13 @@ export default function InputApp() {
 				</div>
 
 				{/* Inputs */}
-				<div className='space-y-5'>
-					<Input id='name-1' label='Your Name' type='text' />
-					<Input id='name-2' label='Callsign' type='number' />
-				</div>
+				<Form onSave={handleSave}>
+					<Input type='text' label='Name' id='name' />
+					<Input type='number' label='Age' id='age' />
+					<p>
+						<Button>Save</Button>
+					</p>
+				</Form>
 
 				{/* Footer */}
 				<div className='border-t border-[#3F321F] pt-4'>
@@ -41,15 +51,8 @@ export default function InputApp() {
 						⚠ Authorization required // Dust protocol active
 					</p>
 				</div>
-				<div>
-					<p>
-						<Button>A Button</Button>
-					</p>
-				</div>
-				<div>
-					<p>
-						<Button href='https://google.com'>A link</Button>
-					</p>
+				<div className='text-stone-50 group relative mt-1 ml-auto flex items-center gap-4 border border-stone-700/60 bg-stone-950/65 px-4 py-2.5 font-mono transition-all duration-150 hover:border-orange-900/70 hover:bg-stone-950/80'>
+					<Container as={'button'}>Click me</Container>
 				</div>
 			</div>
 		</div>
