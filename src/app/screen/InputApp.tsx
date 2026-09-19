@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import Container from '../components/Section_2-Advanced_Input_Components/Container';
-import Input from '../components/Section_2-Advanced_Input_Components/Input';
-import Form from '../components/Section_2-Advanced_Input_Components/Form';
-import Button from '../components/Section_2-Advanced_Input_Components/Button';
+import Container from '../../components/maximilian/Section_2-Advanced_Input_Components/Container';
+import Input from '../../components/maximilian/Section_2-Advanced_Input_Components/Input';
+
+import Form from '../../components/maximilian/Section_2-Advanced_Input_Components/Form';
+import Button from '../../components/maximilian/Section_2-Advanced_Input_Components/Button';
 
 export default function InputApp() {
 	function handleSave(data: unknown) {

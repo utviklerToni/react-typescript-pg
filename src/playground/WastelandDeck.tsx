@@ -1,26 +1,29 @@
 import { useState } from 'react';
+import { matchPath, NavLink, Outlet, useLocation } from 'react-router';
+
 import { appModules } from './appRegistry';
 
-function WastelandDeck() {
-	const [activeId, setActiveId] = useState(appModules[0]?.id);
+const LOADED = String(appModules.length).padStart(2, '0');
+
+export default function WastelandDeck() {
 	const [isOpen, setIsOpen] = useState(false);
+	const { pathname } = useLocation();
 
-	const activeModule = appModules.find((app) => app.id === activeId);
+	// Derive active module from the URL instead of state
+	const activeIndex = appModules.findIndex((mod) =>
+		matchPath({ path: mod.path, end: false }, pathname),
+	);
+	const activeModule = activeIndex >= 0 ? appModules[activeIndex] : undefined;
+	const activeLabel = activeModule?.label ?? '—';
+	const activeNumber =
+		activeIndex >= 0 ? String(activeIndex + 1).padStart(2, '0') : '--';
 
-	if (!activeModule) {
+	if (appModules.length === 0) {
 		return (
 			<div className='flex min-h-screen items-center justify-center bg-slate-950 font-mono text-orange-500'>
 				NO MODULES FOUND
 			</div>
 		);
-	}
-
-	const ActiveComponent = activeModule.component;
-	const activeIndex = appModules.indexOf(activeModule);
-
-	function selectModule(id: string) {
-		setActiveId(id);
-		setIsOpen(false);
 	}
 
 	return (
@@ -54,22 +57,19 @@ function WastelandDeck() {
 								</div>
 
 								<h1 className='font-mono text-3xl font-black tracking-tight text-stone-100'>
-									{activeModule.label}
+									{activeLabel}
 								</h1>
 							</div>
 
 							<div className='hidden text-right font-mono text-[9px] uppercase tracking-[0.2em] text-stone-700 sm:block'>
-								<div>
-									MODULE // {String(activeIndex + 1).padStart(2, '0')}
-								</div>
-
+								<div>MODULE // {activeNumber}</div>
 								<div>STATUS // ONLINE</div>
 							</div>
 						</div>
 					</div>
 
-					{/* Active experiment */}
-					<ActiveComponent />
+					{/* Active experiment — the matched child route renders here */}
+					<Outlet />
 				</div>
 			</div>
 
@@ -79,7 +79,10 @@ function WastelandDeck() {
 
 			<div className='fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl -translate-x-1/2'>
 				{/* DEPLOYED DECK */}
-				<div
+				<nav
+					id='module-deck'
+					aria-label='Modules'
+					inert={!isOpen}
 					className={[
 						'overflow-hidden border border-stone-700/70 bg-stone-950/75 shadow-[0_10px_40px_rgba(0,0,0,0.45)]',
 						'transition-all duration-150',
@@ -99,42 +102,44 @@ function WastelandDeck() {
 						</div>
 
 						<span className='font-mono text-[8px] tracking-[0.2em] text-stone-700'>
-							{String(appModules.length).padStart(2, '0')} LOADED
+							{LOADED} LOADED
 						</span>
 					</div>
 
 					{/* Modules */}
 					<div className='flex max-h-48 flex-wrap overflow-y-auto'>
-						{appModules.map((module, index) => {
-							const isActive = module.id === activeId;
-
-							return (
-								<button
-									key={module.id}
-									type='button'
-									onClick={() => selectModule(module.id)}
-									className={[
+						{appModules.map((mod, index) => (
+							<NavLink
+								key={mod.id}
+								to={mod.path}
+								onClick={() => setIsOpen(false)}
+								className={({ isActive }) =>
+									[
 										'relative min-w-[110px] flex-1 border-b border-r border-stone-800/80 px-4 py-4 text-left font-mono transition-colors duration-100',
 										'hover:bg-orange-950/30',
 										isActive
 											? 'bg-orange-950/20 text-orange-500'
 											: 'text-stone-600 hover:text-orange-400',
-									].join(' ')}
-								>
-									{isActive && (
-										<div className='absolute inset-x-0 bottom-0 h-0.5 bg-orange-600 shadow-[0_0_12px_rgba(234,88,12,0.8)]' />
-									)}
+									].join(' ')
+								}
+							>
+								{({ isActive }) => (
+									<>
+										{isActive && (
+											<div className='absolute inset-x-0 bottom-0 h-0.5 bg-orange-600 shadow-[0_0_12px_rgba(234,88,12,0.8)]' />
+										)}
 
-									<div className='mb-1 text-[8px] tracking-[0.2em] text-stone-700'>
-										{String(index + 1).padStart(2, '0')}
-									</div>
+										<div className='mb-1 text-[8px] tracking-[0.2em] text-stone-700'>
+											{String(index + 1).padStart(2, '0')}
+										</div>
 
-									<div className='text-[10px] font-bold tracking-widest'>
-										{module.label}
-									</div>
-								</button>
-							);
-						})}
+										<div className='text-[10px] font-bold tracking-widest'>
+											{mod.label}
+										</div>
+									</>
+								)}
+							</NavLink>
+						))}
 					</div>
 
 					{/* Status strip */}
@@ -145,24 +150,21 @@ function WastelandDeck() {
 
 						<span className='font-mono text-[8px] uppercase tracking-[0.2em] text-stone-700'>
 							ACTIVE:{' '}
-							<span className='text-orange-800'>
-								{activeModule.label}
-							</span>
+							<span className='text-orange-800'>{activeLabel}</span>
 						</span>
 
 						<span className='hidden font-mono text-[8px] uppercase tracking-[0.2em] text-stone-700 sm:block'>
 							CLICK MODULE TO DEPLOY
 						</span>
 					</div>
-				</div>
+				</nav>
 
-				{/* ================================================== */}
 				{/* DORMANT CONTROL STRIP */}
-				{/* ================================================== */}
-
 				<button
 					type='button'
 					onClick={() => setIsOpen((current) => !current)}
+					aria-expanded={isOpen}
+					aria-controls='module-deck'
 					aria-label={
 						isOpen
 							? 'Close wasteland module deck'
@@ -178,9 +180,8 @@ function WastelandDeck() {
 					{/* Signal */}
 					<span
 						className={[
-							'h-1.5 w-1.5 bg-orange-700',
-							'shadow-[0_0_8px_rgba(194,65,12,0.7)]',
-							isOpen ? 'bg-orange-500' : '',
+							'h-1.5 w-1.5 shadow-[0_0_8px_rgba(194,65,12,0.7)]',
+							isOpen ? 'bg-orange-500' : 'bg-orange-700',
 						].join(' ')}
 					/>
 
@@ -191,12 +192,12 @@ function WastelandDeck() {
 
 					{/* Active module */}
 					<span className='hidden text-[8px] uppercase tracking-[0.2em] text-stone-800 sm:block'>
-						{activeModule.label}
+						{activeLabel}
 					</span>
 
 					{/* Loaded count */}
 					<span className='text-[8px] tracking-[0.2em] text-stone-800'>
-						{String(appModules.length).padStart(2, '0')}
+						{LOADED}
 					</span>
 
 					{/* Orange deployment line */}
@@ -212,8 +213,8 @@ function WastelandDeck() {
 					{/* Small mechanical indicator */}
 					<span
 						className={[
-							'text-[9px] text-stone-700 transition-transform duration-150',
-							isOpen ? 'rotate-180 text-orange-700' : '',
+							'text-[9px] transition-transform duration-150',
+							isOpen ? 'rotate-180 text-orange-700' : 'text-stone-700',
 						].join(' ')}
 					>
 						▲
@@ -223,5 +224,3 @@ function WastelandDeck() {
 		</div>
 	);
 }
-
-export default WastelandDeck;

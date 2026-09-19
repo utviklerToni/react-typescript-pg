@@ -1,6 +1,6 @@
-import CourseGoalList from '../components/Section_1-CourseGoalComponents/CourseGoalList';
-import Header from '../components/Section_1-CourseGoalComponents/Header';
-import NewGoal from '../components/Section_1-CourseGoalComponents/NewGoal';
+import CourseGoalList from '../../components/maximilian/Section_1-CourseGoalComponents/CourseGoalList';
+import Header from '../../components/maximilian/Section_1-CourseGoalComponents/Header';
+import NewGoal from '../../components/maximilian/Section_1-CourseGoalComponents/NewGoal';
 import { useState } from 'react';
 
 export type CourseGoal = {

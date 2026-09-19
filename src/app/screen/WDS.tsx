@@ -1,7 +1,8 @@
-import NameFunc from '../components/WDS/NameFunc';
-import TodoList from '../components/WDS/TodoList';
-import UserCard from '../components/WDS/UserCard';
-import userList from '../assets/user.json';
+import NameFunc from '../../components/WDS/NameFunc';
+import TodoList from '../../components/WDS/TodoList';
+import UserCard from '../../components/WDS/UserCard';
+import userList from '../../assets/user.json';
+import Hooks from '../../components/WDS/Hooks';
 
 export default function WDS() {
 	const user = userList.users[0];
@@ -18,12 +19,14 @@ export default function WDS() {
 				item 1
 			</TodoList> */}
 
-			<UserCard
+			{/* <UserCard
 				name={user.name}
 				age={user.age}
 				phoneNumber={user.phone}
 				address={user.address}
-			/>
+			/> */}
+
+			<Hooks />
 		</main>
 	);
 }

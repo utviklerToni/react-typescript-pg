@@ -1,5 +1,5 @@
 import CourseGoal from './CourseGoal';
-import { type CourseGoal as CourseGoalProps } from '../../app/GoalApp';
+import { type CourseGoal as CourseGoalProps } from '../../../app/screen/GoalApp';
 import InfoBox from './InfoBox';
 import type { ReactNode } from 'react';
 
